@@ -24,18 +24,22 @@ const Users = () => {
 
   const getUsers = async (page: number) => {
     const result = await fetch(
-      `${currentEnvironment.api.baseUrl}?results=5&gender=female&page=${String(page)}`,
+      `${currentEnvironment.api.baseUrl}?results=5&gender=${gender}&page=${String(page)}`, 
     );
-    const usersResults = (await result.json()) as User[];
-
+    const response = await result.json();
+    const usersResults = response.results as User[]; //the response is an object, this is why we need to access the results property
     setUsers((oldUsers) => (page === 1 ? usersResults : [...oldUsers, ...usersResults]));
   };
-
+    
   useEffect(() => {
     void (async () => {
       await getUsers(pageToGet);
     })();
-  }, []);
+  }, [gender, pageToGet]);
+
+  useEffect(() => {
+    console.log("Users state after setUsers:", users);
+  }, [users]);
 
   return (
     <div>
@@ -46,6 +50,7 @@ const Users = () => {
           name="gender"
           onChange={(event) => {
             setGender(event.target.value as Gender);
+            setPageToGet(1);
           }}
         >
           <option value="">All</option>
