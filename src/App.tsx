@@ -11,12 +11,16 @@ const Layout = () => (
     <header className="header">
       <img alt="Company Logo" className="logo" src={logo} />
       <nav>
-        <ul>
+        <ul className="navLinks">
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink className="link" to="/">
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/users">Users</NavLink>
+            <NavLink className="link" to="/users">
+              Users
+            </NavLink>
           </li>
         </ul>
       </nav>

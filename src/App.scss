@@ -1,13 +1,42 @@
-@import "./styles/index.scss";
+@import './styles/index.scss';
+
+.layout-container {
+  background-color: #ffffff;
+}
 
 .header {
-  background-color: #a4c991;
   padding: 10px 20px;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
- 
+  background-image: url('./assets/images/headerBackground.jpg');
+  background-attachment: fixed;
+}
+
+.navLinks {
+  display: flex;
+  color: white;
+  font-size: 25px;
+  list-style: none;
+  text-decoration: none;
+}
+
+.link {
+  text-decoration: none;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 5px;
+  transition-duration: 0.2s;
+}
+
+.link:visited {
+  color: white;
+}
+
+.link:hover {
+  color: #4e4e4e;
+  background-color: #ffffffc2;
 }
 
 .layout-container {
@@ -17,4 +46,18 @@
 .logo {
   width: clamp(130px, 50%, 300px);
   height: auto;
+}
+
+@include for-phone-only {
+  .header {
+    padding: 10px 10px;
+  }
+  .navLinks {
+    gap: 5px;
+    font-size: 20px;
+    flex-direction: column;
+  }
+  .link {
+    padding: 5px;
+  }
 }
